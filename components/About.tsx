@@ -42,10 +42,9 @@ export default function About() {
               transition={{ delay: 0.2, duration: 0.6 }}
               className="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed"
             >
-              I&apos;m a passionate developer and data engineer with a strong foundation in
-              software engineering and data infrastructure. I specialize in building
-              scalable applications, designing efficient data pipelines, and creating
-              solutions that transform complex data into actionable insights.
+              I’m a full-stack software engineer who likes building systems that actually ship: clean UI, reliable APIs,
+              and the data/ML plumbing behind the scenes. My recent work spans event-driven pipelines on AWS,
+              production workflows in Java/Spring Boot, and ML prototypes that turn messy inputs into useful decisions.
             </motion.p>
 
             <motion.p
@@ -54,9 +53,9 @@ export default function About() {
               transition={{ delay: 0.4, duration: 0.6 }}
               className="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed"
             >
-              My expertise spans across full-stack development, cloud infrastructure,
-              data warehousing, and machine learning. I&apos;m always eager to learn new
-              technologies and apply them to solve real-world problems.
+              I’ve worked on responsible AI governance and hands-on engineering, I care about correctness, monitoring,
+              and human-in-the-loop approvals as much as I care about performance. I’m currently finishing my MS in CS
+              at Northeastern university and optimizing my portfolio for big-tech software engineering roles.
             </motion.p>
 
             <motion.div

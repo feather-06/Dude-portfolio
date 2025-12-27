@@ -7,29 +7,34 @@ import TextReveal from './TextReveal'
 const skillCategories = [
   {
     title: 'Languages',
-    skills: ['Python', 'JavaScript', 'TypeScript', 'SQL', 'Java', 'Go'],
+    skills: ['Python', 'Java', 'C/C++', 'SQL', 'JavaScript', 'TypeScript'],
   },
   {
     title: 'Frontend',
-    skills: ['React', 'Next.js', 'HTML5', 'CSS3', 'Tailwind CSS', 'Framer Motion'],
+    skills: ['React', 'Next.js', 'HTML', 'CSS', 'Tailwind CSS'],
   },
   {
-    title: 'Backend',
-    skills: ['Node.js', 'Express', 'FastAPI', 'REST APIs', 'GraphQL', 'Microservices'],
+    title: 'Backend & APIs',
+    skills: ['Spring Boot', 'FastAPI', 'REST APIs', 'Serverless', 'Webhooks'],
   },
   {
-    title: 'Data & Analytics',
-    skills: ['Apache Spark', 'Pandas', 'NumPy', 'Airflow', 'dbt', 'Snowflake'],
+    title: 'Data Engineering',
+    skills: ['ETL Pipelines', 'PostgreSQL', 'MySQL', 'Apache Spark', 'Databricks', 'Delta Lake', 'Parquet'],
+  },
+  {
+    title: 'ML / AI',
+    skills: ['PyTorch', 'TensorFlow', 'CNNs', 'Attention Models', 'Transformers', 'Embeddings', 'RAG'],
   },
   {
     title: 'Cloud & DevOps',
-    skills: ['AWS', 'Docker', 'Kubernetes', 'Terraform', 'CI/CD', 'Git'],
+    skills: ['AWS Lambda', 'S3', 'DynamoDB', 'EventBridge', 'CloudWatch', 'CI/CD', 'Git'],
   },
   {
-    title: 'Databases',
-    skills: ['PostgreSQL', 'MongoDB', 'Redis', 'Elasticsearch', 'BigQuery'],
+    title: 'Process & Delivery',
+    skills: ['Jira', 'Confluence', 'RACI', 'Scrum', 'Kanban'],
   },
 ]
+
 
 export default function Skills() {
   const [ref, inView] = useInView({
