@@ -1,11 +1,10 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useInView } from 'react-intersection-observer'
 
 const experiences = [
   {
-    title: 'Roux Co-op (AI Intern)',
+    title: 'Responsible AI Co-op',
     company: 'Bangor Savings Bank',
     period: 'Jan 2025 – Jun 2025',
     description: [
@@ -17,7 +16,7 @@ const experiences = [
   },
   {
     title: 'Student Ambassador (Khoury College of Computer Science)',
-    company: 'Northeastern University (Roux Institute)',
+    company: 'Northeastern University',
     period: 'Nov 2024 – Present',
     description: [
       'Represent Khoury as a Student Ambassador, creating a tight feedback loop between students, faculty, advisors, and Student Life to improve electives, co-curriculars, and campus experience.',
@@ -31,26 +30,19 @@ const experiences = [
     company: 'Acko General Insurance',
     period: 'Jan 2023 – Jun 2023',
     description: [
-      'Engineered AWS Lambda-based data pipelines to ingest, transform, and sync operational data into Amazon Honeycode, integrating DynamoDB Streams, S3, and CloudWatch for end-to-end monitoring.',
+      'Engineered AWS Lambda-based data pipelines to ingest/transform/sync operational data into Amazon Honeycode using DynamoDB Streams, S3, and CloudWatch monitoring.',
       'Optimized pipeline execution with concurrent processing + EventBridge scheduling, reducing latency by 30% and cloud costs by 18%.',
-      'Built Java/Spring Boot services for a regulated health insurance platform (pricing, issuance, KYC, payment state handling, audit-ready workflows).',
-      'Implemented React/Next.js UI fixes and instrumented Amplitude analytics to track funnel metrics and drop-offs, reducing reconciliation work by 25%.',
+      'Developed Java/Spring Boot services for regulated health insurance workflows (pricing, policy issuance, KYC verification, payment state handling).',
+      'Implemented React/Next.js fixes and added Amplitude analytics instrumentation to track funnel metrics and reduce reconciliation work by 25%.',
     ],
-    technologies: ['AWS Lambda', 'DynamoDB', 'S3', 'EventBridge', 'Java', 'Spring Boot', 'React', 'Next.js', 'Amplitude'],
+    technologies: ['AWS Lambda', 'DynamoDB', 'S3', 'EventBridge', 'Java', 'Spring Boot', 'React', 'Next.js'],
   },
 ]
 
-
 export default function Experience() {
-  const [ref, inView] = useInView({
-    triggerOnce: false,
-    threshold: 0.2,
-  })
-
   return (
     <section
       id="experience"
-      ref={ref}
       className="py-20 md:py-32 bg-white dark:bg-gray-900"
       aria-labelledby="experience-heading"
     >
@@ -58,55 +50,55 @@ export default function Experience() {
         <motion.h2
           id="experience-heading"
           initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.25 }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
           className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-12 md:mb-16 text-gray-900 dark:text-white"
         >
           Experience
         </motion.h2>
 
-        <div className="max-w-4xl mx-auto">
+        {/* ✅ Wider container (fixed) */}
+        <div className="max-w-6xl xl:max-w-7xl mx-auto">
           <div className="relative">
             {/* Timeline line */}
-            <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-primary-200 transform md:-translate-x-1/2"></div>
+            <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-primary-200 transform md:-translate-x-1/2" />
 
             {experiences.map((exp, index) => (
               <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 24 }}
+                key={`${exp.company}-${exp.period}`}
+                initial={{ opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ delay: index * 0.12, duration: 0.55, ease: 'easeOut' }}
-                className={`relative mb-12 ${
-                  index % 2 === 0 ? 'md:pr-1/2 md:pr-8' : 'md:pl-1/2 md:pl-8 md:text-right'
-                }`}
+                viewport={{ once: true, amount: 0.25 }}
+                transition={{ delay: index * 0.1, duration: 0.55, ease: 'easeOut' }}
+                className="relative mb-12"
               >
                 {/* Timeline dot */}
-                <div className="absolute left-4 md:left-1/2 w-4 h-4 bg-primary-600 rounded-full transform -translate-x-1/2 md:-translate-x-1/2 z-10"></div>
+                <div className="absolute left-4 md:left-1/2 w-4 h-4 bg-primary-600 rounded-full transform -translate-x-1/2 z-10" />
 
-                <div className="ml-12 md:ml-0 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md dark:shadow-gray-800 border-l-4 border-primary-600">
-                  <div className={`${index % 2 === 1 ? 'md:text-right' : ''}`}>
+                {/* ✅ Wider + responsive card wrapper */}
+                <div
+                  className={`ml-12 w-[calc(100%-3rem)] md:ml-0 md:w-[min(46rem,calc(50%-1.25rem))] lg:w-[min(54rem,calc(50%-1.25rem))] ${
+                    index % 2 === 0 ? 'md:mr-auto md:pr-6' : 'md:ml-auto md:pl-6'
+                  }`}
+                >
+                  <div className="bg-white dark:bg-gray-800 p-5 sm:p-6 md:p-7 rounded-lg shadow-md dark:shadow-gray-800 border-l-4 border-primary-600">
                     <h3 className="text-xl md:text-2xl font-bold text-primary-900 dark:text-primary-400 mb-1">
                       {exp.title}
                     </h3>
                     <p className="text-lg text-primary-600 mb-2">{exp.company}</p>
                     <p className="text-sm text-gray-500 mb-4">{exp.period}</p>
 
-                    <ul className={`space-y-2 text-gray-700 dark:text-gray-300 ${index % 2 === 1 ? 'md:text-right' : ''}`}>
-                      {exp.description.map((item, i) => (
-                        <li key={i} className="flex items-start">
-                          {index % 2 === 0 && (
-                            <span className="text-primary-600 mr-2">▸</span>
-                          )}
+                    <ul className="space-y-2 text-gray-700 dark:text-gray-300 leading-relaxed">
+                      {exp.description.map((item) => (
+                        <li key={item} className="flex items-start">
+                          <span className="text-primary-600 mr-2">▸</span>
                           <span>{item}</span>
-                          {index % 2 === 1 && (
-                            <span className="text-primary-600 ml-2 md:order-first">▸</span>
-                          )}
                         </li>
                       ))}
                     </ul>
 
-                    <div className={`flex flex-wrap gap-2 mt-4 ${index % 2 === 1 ? 'md:justify-end' : ''}`}>
+                    <div className="flex flex-wrap gap-2 mt-4">
                       {exp.technologies.map((tech) => (
                         <span
                           key={tech}
@@ -126,4 +118,3 @@ export default function Experience() {
     </section>
   )
 }
-

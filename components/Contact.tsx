@@ -8,8 +8,7 @@ import MagneticButton from './MagneticButton'
 
 const EMAIL = 'sakethdude.dev@gmail.com'
 const GITHUB = 'https://github.com/feather-06'
-// TODO: replace once you send your real LinkedIn
-const LINKEDIN = 'https://linkedin.com'
+const LINKEDIN = 'https://www.linkedin.com/in/saketh-krishna-dude-b476341a0/'
 
 export default function Contact() {
   const [ref, inView] = useInView({ triggerOnce: false, threshold: 0.2 })
@@ -31,10 +30,7 @@ export default function Contact() {
       `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}\n`
     )
 
-    // open user's email client
     window.location.href = `mailto:${EMAIL}?subject=${subject}&body=${body}`
-
-    // small UX reset
     setTimeout(() => setIsSubmitting(false), 500)
   }
 
@@ -70,7 +66,7 @@ export default function Contact() {
             >
               <h3 className="text-2xl font-semibold mb-6 text-gray-900 dark:text-white">Let&apos;s Connect</h3>
               <p className="text-gray-700 dark:text-gray-300 mb-8">
-                Recruiting, collab, or building something real? Hit me up — I respond fast.
+                Recruiting, collab, or building something real? Hit me up - I respond fast.
               </p>
 
               <div className="space-y-4">
@@ -90,7 +86,6 @@ export default function Contact() {
                   aria-label="Visit LinkedIn profile"
                 >
                   <span className="font-medium">LinkedIn</span>
-                  <span className="text-xs text-gray-500">(send me your URL to replace)</span>
                 </a>
 
                 <a

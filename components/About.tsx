@@ -1,16 +1,11 @@
 'use client'
 
-import { motion, useScroll, useTransform } from 'framer-motion'
-import { useInView } from 'react-intersection-observer'
+import { motion } from 'framer-motion'
 import { useRef } from 'react'
 import TextReveal from './TextReveal'
 
 export default function About() {
   const sectionRef = useRef<HTMLElement>(null)
-  const [ref, inView] = useInView({
-    triggerOnce: false,
-    threshold: 0.2,
-  })
 
   return (
     <section
@@ -22,7 +17,8 @@ export default function About() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
           className="max-w-4xl mx-auto"
         >
@@ -37,9 +33,10 @@ export default function About() {
 
           <div className="prose prose-lg max-w-none">
             <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2, duration: 0.6 }}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ delay: 0.1, duration: 0.5, ease: 'easeOut' }}
               className="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed"
             >
               I’m a full-stack software engineer who likes building systems that actually ship: clean UI, reliable APIs,
@@ -48,45 +45,60 @@ export default function About() {
             </motion.p>
 
             <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.4, duration: 0.6 }}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ delay: 0.2, duration: 0.5, ease: 'easeOut' }}
               className="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed"
             >
-              I’ve worked on responsible AI governance and hands-on engineering, I care about correctness, monitoring,
+              I’ve worked on responsible AI governance and hands-on engineering. I care about correctness, monitoring,
               and human-in-the-loop approvals as much as I care about performance. I’m currently finishing my MS in CS
-              at Northeastern university and optimizing my portfolio for big-tech software engineering roles.
+              at Northeastern University and optimizing my portfolio for big-tech software engineering roles.
             </motion.p>
 
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.6, duration: 0.6 }}
-              className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ delay: 0.3, duration: 0.55, ease: 'easeOut' }}
+              className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10"
             >
               <motion.div
-                whileHover={{ scale: 1.05, rotateY: 5 }}
-                className="p-6 bg-primary-50 dark:bg-gray-800 rounded-lg tilt-3d hover:shadow-xl transition-shadow"
+                whileHover={{ scale: 1.04 }}
+                className="p-6 bg-primary-50 dark:bg-gray-800 rounded-lg hover:shadow-xl transition-all"
               >
-                <h3 className="text-xl font-semibold mb-3 text-primary-900 dark:text-primary-400">
-                  Development
+                <h3 className="text-lg font-semibold mb-2 text-primary-900 dark:text-primary-400">
+                  Full-Stack Engineering
                 </h3>
-                <p className="text-gray-700 dark:text-gray-300">
-                  Building modern web applications with React, Next.js, and TypeScript.
-                  Focus on performance, accessibility, and user experience.
+                <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
+                  Building production-ready UIs and APIs using React, Next.js, Java, and Spring Boot with a focus on
+                  performance, correctness, and maintainable code.
                 </p>
               </motion.div>
 
               <motion.div
-                whileHover={{ scale: 1.05, rotateY: -5 }}
-                className="p-6 bg-primary-50 dark:bg-gray-800 rounded-lg tilt-3d hover:shadow-xl transition-shadow"
+                whileHover={{ scale: 1.04 }}
+                className="p-6 bg-primary-50 dark:bg-gray-800 rounded-lg hover:shadow-xl transition-all"
               >
-                <h3 className="text-xl font-semibold mb-3 text-primary-900 dark:text-primary-400">
-                  Data Engineering
+                <h3 className="text-lg font-semibold mb-2 text-primary-900 dark:text-primary-400">
+                  Data & Systems
                 </h3>
-                <p className="text-gray-700 dark:text-gray-300">
-                  Designing and implementing data pipelines, ETL processes, and data
-                  warehouses. Working with big data technologies and cloud platforms.
+                <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
+                  Designing event-driven pipelines and ETL workflows on AWS using Lambda, DynamoDB, S3, and monitoring
+                  that keeps systems observable in production.
+                </p>
+              </motion.div>
+
+              <motion.div
+                whileHover={{ scale: 1.04 }}
+                className="p-6 bg-primary-50 dark:bg-gray-800 rounded-lg hover:shadow-xl transition-all"
+              >
+                <h3 className="text-lg font-semibold mb-2 text-primary-900 dark:text-primary-400">
+                  ML-Aware Product Work
+                </h3>
+                <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
+                  Shipping ML-powered features responsibly from model pipelines to explainability, governance, and
+                  human-in-the-loop workflows that teams can trust.
                 </p>
               </motion.div>
             </motion.div>
@@ -96,4 +108,3 @@ export default function About() {
     </section>
   )
 }
-
